@@ -8,7 +8,7 @@ defmodule OlddragonsheetWeb.Router do
   scope "/api", OlddragonsheetWeb do
     pipe_through :api
 
-    get "/", TestController, :index
+    post "/users", UsersController, :create
   end
 
   # Enables LiveDashboard only for development
