@@ -10,9 +10,10 @@ defmodule Olddragonsheet.User do
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true
+    field :password_confirmation, :string, virtual: true
     field :password_hash, :string
     field :isMaster, :boolean
-    #has_many :character, Olddragonsheet.Character
+    has_many :characters, Olddragonsheet.Character
 
     timestamps()
   end
@@ -23,6 +24,7 @@ defmodule Olddragonsheet.User do
     |> cast(params, @required_params)
     |> validate_required(@required_params)
     |> validate_length(:password, min: 6)
+    |> validate_confirmation(:password) #check if the password === password_confirmation
     |> validate_format(:email, ~r/@/)
     |> unique_constraint([:email])
     |> put_password_hash()

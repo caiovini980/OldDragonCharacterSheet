@@ -1,7 +1,7 @@
 defmodule Olddragonsheet.Repo.Migrations.CreateCharacterTable do
   use Ecto.Migration
 
-  def up do
+  def change do
     create table :characters do
       add :name, :string
       add :class, :string
@@ -13,10 +13,12 @@ defmodule Olddragonsheet.Repo.Migrations.CreateCharacterTable do
       add :idioms, :string
       add :experience_points, :integer, default: 0
       add :avatar, :string
-    end
-  end
+      add :user_id, references(:users, type: :binary_id)
 
-  def down do
-    drop table :characters
+      timestamps()
+    end
+
+    create constraint(:characters, :experience_must_be_positive_or_zero, check: "experience_points >= 0")
+    create constraint(:characters, :followers_must_be_positive_or_zero, check: "followers >= 0")
   end
 end

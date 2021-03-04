@@ -8,7 +8,10 @@ defmodule OlddragonsheetWeb.Router do
   scope "/api", OlddragonsheetWeb do
     pipe_through :api
 
+    #unauthenticated users can olny create users
     post "/users", UsersController, :create
+
+    post "/users/:id/characters", CharactersController, :create
   end
 
   # Enables LiveDashboard only for development

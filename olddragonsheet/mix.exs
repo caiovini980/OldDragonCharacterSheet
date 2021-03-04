@@ -45,6 +45,7 @@ defmodule Olddragonsheet.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:pbkdf2_elixir, "~> 1.3"},
       {:arc_ecto, "~> 0.11.3"},
+      {:guardian, "~> 1.0"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false}
     ]
   end
